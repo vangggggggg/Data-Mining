@@ -4,10 +4,12 @@ class ITtree:
         self.TidSet = tidSets
         self.Pointer = {}
 
-def clientITTree(root):
+def clientITTree(root, final_result):
     print(root.Item, root.TidSet)
+    final_result.append(root.Item)
     for key, values in root.Pointer.items():
-        clientITTree(values)
+        clientITTree(values, final_result)
+
 def rootITtree(id, tidSet):
 
     root = ITtree("{}", id)
@@ -32,7 +34,6 @@ def createITtree(firstroot, root, minsub, dicarditem, items):
         if items is None:
             return
         for x in items:
-
             if x in dicarditem:
                 break
             if x[0] in key:

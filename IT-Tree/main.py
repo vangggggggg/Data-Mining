@@ -15,13 +15,17 @@ def read_file(filename):
 
     return dataset, keys
 if __name__ == "__main__":
-   try:
+    try:
         filename = input("Please Enter File Name: ")
         dataset, keys = read_file(filename)
-        minsub = float(input("Please Enter Minimum Support: "))
+        minsub = float(input("Please Enter Minimum Support(% ex:0.5): "))
+        sub = int(len(keys)*minsub)
+        final_result = []
         root = rootITtree(dataset, keys)
         items = get_keys_dict(root.Pointer)
-        createITtree(root, root, minsub, [], items)
-        clientITTree(root)
-   except Exception:
+        createITtree(root, root, sub, [], items)
+        print("\nVisual tree")
+        clientITTree(root, final_result)
+        print("\nAll frequent :", final_result[1:])
+    except Exception:
         print("ERROR")
